@@ -18,5 +18,6 @@ video_list_item
 
 App passes a callback down to video_list_item which onClick sets App state selectedVideo to the clicked video causing video_detail to re-render
 
+App passes a callback to SearchBar which onChange calls videoSearch with the searched term. videoSearch makes an api r 
 
 
