@@ -1,8 +1,11 @@
+// import libraries
+
 import _ from 'lodash';
 import React, { Component }  from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 
+// import created components
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
@@ -19,19 +22,22 @@ class App extends Component {
     
         super(props);
         
+        // set initial component state
         this.state = { 
             
             videos: [],
             selectedVideo: null
         };
         
+        // call videoSearch with an initial search term
         this.videoSearch('surboards');
         
     }
-        
+    // this method searches youtube api with searchterm provided
     videoSearch(term) {
         YTSearch({key: API_KEY, term: term}, (videos) => {
-        
+                
+                // sets component state with returned data and sets selectedVideo to first in array
                 this.setState({ 
                     videos: videos,
                     selectedVideo: videos[0]
@@ -41,11 +47,11 @@ class App extends Component {
     }
     
     render() {
-        // throttle usr input
+        // using lodash to throttle user input, method runs every 300 miliseconds 
         const videoSearch = _.debounce((term) => {this.videoSearch(term) }, 300);
         
         return (
-
+             // renders components to DOM
             <div>
                 <SearchBar onSearchTermChange={videoSearch} /> 
                 <VideoDetail video={this.state.selectedVideo}/>
