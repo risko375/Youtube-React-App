@@ -1,25 +1,23 @@
-# ReduxSimpleStarter
+A React App which utilises youtube-search-api to return videos for searched term
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
+Uses five components:
 
-###Getting Started###
+2 class components with their own component level state:
+App - this.state = { 
+            
+            videos: [],
+            selectedVideo: null
+        };
+        
+SearchBar - this.state = { term: ''};
 
-There are two methods for getting started with this repo.
+3 functional components:
+video_detail
+video_list
+video_list_item
 
-####Familiar with Git?#####
-Checkout this repo, install dependencies, then start the gulp process with the following:
+App passes a callback down to video_list_item which onClick sets App state selectedVideo to the clicked video causing video_detail to re-render
 
-```
-	> git clone git@github.com:StephenGrider/ReduxSimpleStarter.git
-	> cd ReduxSimpleStarter
-	> npm install
-	> npm start
-```
+App passes a callback to SearchBar which onChange calls videoSearch with the searched term. videoSearch makes an api request to Youtube and on return updates the videos state causing components to re-render 
 
-####Not Familiar with Git?#####
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
 
-```
-	> npm install
-	> npm start
-```
